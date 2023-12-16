@@ -255,6 +255,7 @@ def train(model, train_set, val_set, optimizer, loss, tokenizer, args):
 
         # Model update
         optimizer.update(model, grad)
+        mx.simplify(model.parameters(), optimizer.state, lvalue)
         mx.eval(model.parameters(), optimizer.state, lvalue)
 
         # Record loss
